@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+
+@theme {
+    --color-ice-blue: #8CF1E9;
+    --color-charcol: #4A5068;
+    --color-light-cyan: #E1FAFB;
+    --color-antique-white: #FEF2DF;
+    --color-baby-powder: #FEFCF8;
+    --color-seashell: #FBF2EE;
+    --color-peach: #F9BB98;
+    --color-slate-gray: #7A8BA1;
+    --color-honeydew: #E7FDF2;
+    --color-azure: #EEFBFD;
+}
+
+.my-icon { background-color: orangered; }

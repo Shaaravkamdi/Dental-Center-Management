@@ -1,0 +1,63 @@
+import React from 'react';
+import tooth from '../../assets/tooth.png';
+
+const Sidebar = () => {
+    const menuItems = [
+        { href: '/dashboard', icon: 'fa-table', label: 'Dashboard', color: '#c08d62' },
+        { href: '/patient', icon: 'fa-hospital-user', label: 'Patients', color: '#5182d6' },
+        { href: '/appointment', icon: 'fa-calendar-check', label: 'Appointments', color: '#FFD43B' },
+        { href: '/file', icon: 'fa-folder', label: 'Files', color: '#d9a287' },
+        { href: '/setting', icon: 'fa-gear', label: 'Settings', color: '#63E6BE' },
+    ];
+
+    return (
+        <div className="flex">
+            <aside className="h-screen p-4 fixed w-16 md:w-64 bg-baby-powder z-20">
+
+                <div className="flex items-center space-x-3 px-2">
+                    <div className="bg-orange-100 p-2 rounded-full">
+                        <img src={tooth} alt="Tooth Icon" className="w-7 h-7" />
+                    </div>
+                    <h1 className="text-xl font-semibold text-charcol hidden md:inline">Dental Center</h1>
+                </div>
+
+                <ul className="flex flex-col mt-10 text-base md:text-lg">
+                    {menuItems.map((item, index) => (
+                        <li
+                            key={index}
+                            className="flex items-center py-3 px-2 space-x-4 hover:rounded-2xl hover:cursor-pointer hover:bg-blue-100 hover:text-charcol"
+                        >
+                            <a href={item.href}>
+                                <i className={`fa-solid ${item.icon}`} style={{ color: item.color }}></i>
+                            </a>
+                            <a href={item.href}>
+                                <span className="hidden md:inline">{item.label}</span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+
+                <div className="my-6 mx-2" />
+
+                <ul className="flex flex-col text-base md:text-lg relative top-55">
+                    <li className="flex items-center py-3 px-2 space-x-4 text-gray-700">
+                        <i className="fa-solid fa-user-tie" style={{ color: '#c665c8' }}></i>
+                        <span className="hidden md:inline">Admin</span>
+                    </li>
+
+                    <li
+                        onClick={() => {
+                            window.location.href = '/';
+                        }}
+                        className="flex items-center py-3 px-2 space-x-4 hover:rounded-2xl hover:cursor-pointer hover:bg-blue-100 hover:text-charcol text-red-600"
+                    >
+                        <i className="fa-solid fa-right-from-bracket"></i>
+                        <span className="hidden md:inline">Logout</span>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+    );
+};
+
+export default Sidebar;

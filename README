@@ -1,0 +1,175 @@
+Project Title and Description
+1. Title: Dental Center Management - ENTNT Frontend Assignment
+2. Short Description: A React-based frontend-only dashboard simulating a dental center with patient and appointment management, supporting file uploads and role-based views for Admin and Patients.
+3. Note: Data persistence via localStorage only. No backend or APIs used.
+
+
+
+Project Architecture
+1. Frontend Framework: React (Functional Components)
+2. Routing: React Router
+3. State Management: React Context API
+4. Styling: Tailwind CSS
+5. File Handling: Base64/Blob via localStorage
+6. Component Structure:
+6.1 components/ – Shared reusable UI components (e.g., Header, Sidebar)
+6.2 pages/ – Main views for Admin/Patient (Dashboard, Appointments, etc.)
+6.3 utils/ – Helpers (e.g., auth, date formatting, localStorage handling)
+6.4 contexts/ – Context API providers for auth/session
+7. Data Simulated in localStorage:
+7.1 users, patients, incidents (appointments), files
+
+
+User Roles & Access
+1. Admin (Dentist):
+Full access to manage patients and incidents
+Calendar view of appointments
+File uploads for invoices/x-rays
+Dashboard with KPIs
+
+2. Patient:
+View only their own treatments
+Download treatment files (images/invoices)
+See appointment status and history
+
+
+Technical Decisions
+1. Why localStorage?
+Required for simulating data without a backend. All CRUD operations persist locally.
+2. Role-based access control
+Implemented via context + localStorage, checked on route entry and conditional UI rendering.
+3. PDF generation:
+jsPDF used to export treatment data and images to downloadable PDFs for Admins.
+4. File uploads:
+Files are converted to blob/base64 and stored inside localStorage to simulate a realistic upload/download workflow.
+5. Responsiveness:
+Achieved with Tailwind CSS across mobile, tablet, and desktop views.
+
+
+Known Issues or Limitations
+1. No real authentication (login is based on hardcoded users).
+2. No real backend or database – all data is lost on clearing browser storage.
+3. File uploads are stored as base64 – this may affect localStorage size limits.
+4. Simulated image rendering and PDF export may vary by browser capabilities.
+
+
+
+"Users":
+Login  
+ { "id": "1", 
+ "role": "Admin", 
+ "email": "admin@entnt.in", 
+ "password": "admin123" }
+
+ { "id": "2", 
+ "role": "Patient", 
+ "email": "john@entnt.in", 
+ "password": "patient123", 
+ "patientId": "p1" }
+
+
+
+ADMIN FLOWCHART
+┌───────────────────────────────────┐
+│         Admin Login               │
+│ (Simulated Auth via localStorage) │
+└──────────────┬────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────┐
+│         Admin Dashboard         │
+│  - KPIs (appointments, revenue) │
+│  - Quick Access Panels          │
+└───────┬─────────────────────┬───┘
+        │                     │
+        ▼                     ▼
+┌──────────────────┐   ┌──────────────────────┐
+│ Manage Patients  │   │  Calendar View       │
+│ (Add/Edit/Delete)│   │(Monthly/Weekly view) │
+└──────┬───────────┘   └───────┬──────────────┘
+       │                       │
+       ▼                       ▼
+┌────────────────────┐  ┌────────────────────────────┐
+│Patient Details Page│  │ View Appointments by Date  │
+└────────┬───────────┘  └────────────┬───────────────┘
+         │                           │
+         ▼                           ▼
+┌─────────────────────────────┐ ┌──────────────────────────┐
+│   Appointment / Incident    │ │    Appointment Details   │
+│   - Title, Description      │ │    - Add Cost, Status    │
+│   - Date, Comments          │ │    - Upload Files (e.g., │
+│                             │ │      images, PDFs)       │
+└────────────┬────────────────┘ └────────────┬─────────────┘
+             │                               │
+             ▼                               ▼
+┌─────────────────────────────┐ ┌────────────────────────────┐
+│ Save Data to localStorage   │ │ Generate Invoice (optional)│
+└─────────────────────────────┘ └────────────────────────────┘
+Description of Flow:
+1. Admin logs in via hardcoded credentials.
+2. Dashboard gives overview and access to other modules.
+3. Admin can manage patients and schedule/manage appointments.
+4. Appointments link to detailed treatment records and allow file uploads.
+5. Invoices can be generated and stored in localStorage.
+6. Everything is handled client-side using localStorage for persistence.
+
+
+
+PATIENT FLOWCHATR
+┌───────────────────────────────────┐
+│        Patient Login              │
+│ (Simulated Auth via localStorage) │
+└──────────────┬────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│       Patient Dashboard      │
+│  - Welcome Message           │
+│  - Upcoming Appointments     │
+│  - Quick View: Past Visits   │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│    My Appointments Page      │
+│  - Upcoming & Completed      │
+│  - Status, Date, Comments    │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│   Appointment Details View   │
+│  - Doctor Comments           │
+│  - Cost & Status             │
+│  - Next Appointment Date     │
+│  - Attached Files (Preview)  │
+│     • View or Download Image │
+│     • Download Invoice PDF   │
+└──────────────────────────────┘
+
+Explanation:
+1. Patient logs in using hardcoded credentials (localStorage-authenticated).
+2. Dashboard shows a clean overview of their records (only their own data).
+3. They can view:
+Upcoming appointments
+History of treatments
+Doctor's comments, cost, and status
+Download or preview attached files (like X-rays or invoices).
+
+
+
+
+Patient Workflow Overview
+1. The patient logs in using hardcoded credentials (authentication is simulated via localStorage).
+2. After login, the Patient Dashboard displays a personalized overview:
+Upcoming appointments
+Past treatments and visit history
+Doctor's comments, cost, treatment status
+Access to attached files (e.g., X-rays, invoices), with options to preview images or download PDF invoices
+
+How to Add a Patient (Admin Flow)
+1. The Admin (Doctor) adds a new patient via the "Add New Patient" form.
+2. After the patient is created, the admin can schedule appointments for that patient.
+3. Once an appointment is completed, the admin can generate and attach an invoice, including treatment cost, comments, and uploaded files (e.g., images).
+
+NOTE: The Patient Dashboard will automatically reflect these updates in real-time from localStorage, showing upcoming and past visits, costs, and downloadable treatment documents.
