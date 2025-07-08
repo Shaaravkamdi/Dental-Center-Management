@@ -68,6 +68,35 @@ Login
  "patientId": "p1" }
 
 
+Enter Patient Detials as:
+ "patients": [
+ {
+ "id": "p1",
+ "name": "John Doe",
+ "dob": "1990-05-10",
+ "contact": "1234567890",
+ "healthInfo": "No allergies"
+ }
+ ],
+
+ "incidents": [
+ {
+ "id": "i1",
+ "patientId": "p1",
+ "title": "Toothache",
+ "description": "Upper molar pain",
+ "comments": "Sensitive to cold",
+ "appointmentDate": "2025-07-01, T10:00:00",
+ "cost": 80,
+ "status": "Completed",
+ "files": [
+ { "name": "invoice.pdf", "url": "base64string-or-blob-url" },
+ { "name": "xray.png", "url": "base64string-or-blob-url" }
+ ]
+ }
+ ]
+
+
 
 ADMIN FLOWCHART
 ┌───────────────────────────────────┐
@@ -172,4 +201,4 @@ How to Add a Patient (Admin Flow)
 2. After the patient is created, the admin can schedule appointments for that patient.
 3. Once an appointment is completed, the admin can generate and attach an invoice, including treatment cost, comments, and uploaded files (e.g., images).
 
-NOTE: The Patient Dashboard will automatically reflect these updates in real-time from localStorage, showing upcoming and past visits, costs, and downloadable treatment documents.
+NOTE: The Patient Dashboard will automatically reflect these updates in real-time from localStorage, showing upcoming and past visits, costs, and downloadable treatment documents. Do not change tab after ading patient data through Admin, log out admin and login as patient in same tab.
