@@ -4,7 +4,6 @@ Project Title and Description
 3. Note: Data persistence via localStorage only. No backend or APIs used.
 
 
-
 Project Architecture
 1. Frontend Framework: React (Functional Components)
 2. Routing: React Router
@@ -53,7 +52,6 @@ Known Issues or Limitations
 4. Simulated image rendering and PDF export may vary by browser capabilities.
 
 
-
 "Users":
 Login  
  { "id": "1", 
@@ -95,7 +93,6 @@ Enter Patient Detials as:
  ]
  }
  ]
-
 
 
 ADMIN FLOWCHART
